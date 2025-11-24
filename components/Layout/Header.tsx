@@ -56,7 +56,7 @@ const Header: React.FC = () => {
                 {link.name}
               </Link>
             ))}
-            <a href="https://open.kakao.com/o/s0kqRs3h" target="_blank" rel="noopener noreferrer">
+            <a href="https://open.kakao.com/o/sQU9Xt3h" target="_blank" rel="noopener noreferrer">
               <Button variant="secondary" size="sm">
                 무료 상담 신청
               </Button>
@@ -91,7 +91,7 @@ const Header: React.FC = () => {
               </Link>
             ))}
              <a 
-               href="https://open.kakao.com/o/s0kqRs3h" 
+               href="https://open.kakao.com/o/sQU9Xt3h" 
                target="_blank" 
                rel="noopener noreferrer"
                onClick={() => setIsMobileMenuOpen(false)}

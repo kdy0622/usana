@@ -63,7 +63,7 @@ const ContactPage: React.FC = () => {
               
               <div className="flex flex-col gap-4 mb-12">
                 <a 
-                  href="https://open.kakao.com/o/s0kqRs3h" 
+                  href="https://open.kakao.com/o/sQU9Xt3h" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="flex items-center p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow"
@@ -95,7 +95,7 @@ const ContactPage: React.FC = () => {
                   </div>
                 </a>
                 <a 
-                  href="https://litt.ly/usana" 
+                  href="https://litt.ly/usana.family" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="flex items-center p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow"
@@ -105,7 +105,7 @@ const ContactPage: React.FC = () => {
                   </div>
                   <div>
                     <div className="text-sm text-gray-500">개인 홈페이지</div>
-                    <div className="font-bold">litt.ly/usana</div>
+                    <div className="font-bold">litt.ly/usana.family</div>
                   </div>
                 </a>
               </div>

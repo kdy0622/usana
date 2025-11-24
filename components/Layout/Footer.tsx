@@ -19,7 +19,7 @@ const Footer: React.FC = () => {
                 <Instagram size={24} />
               </a>
               <a 
-                href="https://open.kakao.com/o/s0kqRs3h" 
+                href="https://open.kakao.com/o/sQU9Xt3h" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="text-gray-400 hover:text-secondary transition-colors"
