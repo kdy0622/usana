@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Instagram, MessageCircle, Mail } from 'lucide-react';
+import { Instagram, MessageCircle, Mail, Globe } from 'lucide-react';
 
 const Footer: React.FC = () => {
   return (
@@ -15,7 +15,12 @@ const Footer: React.FC = () => {
               진정한 건강과 부를 누리세요.
             </p>
             <div className="flex space-x-4">
-              <a href="#" className="text-gray-400 hover:text-secondary transition-colors">
+              <a 
+                href="https://www.instagram.com/mk032512?igsh=YmF2Nms0Z3hub2ky" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-gray-400 hover:text-secondary transition-colors"
+              >
                 <Instagram size={24} />
               </a>
               <a 
@@ -26,9 +31,20 @@ const Footer: React.FC = () => {
               >
                 <MessageCircle size={24} />
               </a>
-              <Link to="/contact" className="text-gray-400 hover:text-secondary transition-colors">
+              <a 
+                href="mailto:mkk032512@naver.com" 
+                className="text-gray-400 hover:text-secondary transition-colors"
+              >
                 <Mail size={24} />
-              </Link>
+              </a>
+              <a 
+                href="https://litt.ly/usana.family" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-gray-400 hover:text-secondary transition-colors"
+              >
+                <Globe size={24} />
+              </a>
             </div>
           </div>
           

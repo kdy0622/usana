@@ -29,15 +29,50 @@ const FAQItem = ({ question, answer }: { question: string; answer: string }) => 
 };
 
 const ContactPage: React.FC = () => {
-  const [formStatus, setFormStatus] = useState<'idle' | 'submitting' | 'success'>('idle');
+  const [formData, setFormData] = useState({
+    name: '',
+    phone: '',
+    location: '',
+    category: '비즈니스/부업 문의',
+    message: ''
+  });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setFormStatus('submitting');
-    // Simulate API call
-    setTimeout(() => {
-      setFormStatus('success');
-    }, 1500);
+    
+    const text = `[USANA 상담 신청]
+성함: ${formData.name}
+연락처: ${formData.phone}
+거주 지역: ${formData.location}
+관심 분야: ${formData.category}
+문의 내용: ${formData.message}`;
+
+    try {
+      await navigator.clipboard.writeText(text);
+      alert('상담 신청 내용이 복사되었습니다.\n오픈채팅방에서 붙여넣기(Ctrl+V) 해주세요.');
+    } catch (err) {
+      console.error('Clipboard copy failed:', err);
+      alert('카카오톡 오픈채팅방으로 이동합니다.\n상담 내용을 입력해주세요.');
+    }
+
+    window.open('https://open.kakao.com/o/sQU9Xt3h', '_blank');
+    
+    // Reset form after redirect
+    setFormData({
+      name: '',
+      phone: '',
+      location: '',
+      category: '비즈니스/부업 문의',
+      message: ''
+    });
   };
 
   return (
@@ -134,69 +169,83 @@ const ContactPage: React.FC = () => {
             {/* Contact Form */}
             <div className="bg-white p-8 rounded-2xl shadow-lg">
               <h3 className="text-2xl font-bold mb-6 text-gray-800">상담 신청서</h3>
-              {formStatus === 'success' ? (
-                <div className="text-center py-12">
-                  <div className="w-16 h-16 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <CheckCircle2 size={32} />
-                  </div>
-                  <h4 className="text-xl font-bold text-gray-800 mb-2">신청이 완료되었습니다!</h4>
-                  <p className="text-gray-600 mb-1">신청해주신 내용은 담당자에게 전송되었습니다.</p>
-                  <p className="text-gray-500 text-sm mb-6">
-                    (문자: 010-7478-0527 / 이메일: mkk032512@naver.com)
-                  </p>
-                  <button 
-                    onClick={() => setFormStatus('idle')}
-                    className="text-primary font-medium hover:underline"
-                  >
-                    다시 작성하기
-                  </button>
+              <form onSubmit={handleSubmit} className="space-y-6">
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">성함</label>
+                  <input 
+                    required 
+                    type="text" 
+                    name="name"
+                    value={formData.name}
+                    onChange={handleChange}
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all" 
+                    placeholder="홍길동" 
+                  />
                 </div>
-              ) : (
-                <form onSubmit={handleSubmit} className="space-y-6">
+                
+                <div className="grid grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">성함</label>
-                    <input required type="text" className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all" placeholder="홍길동" />
+                      <label className="block text-sm font-medium text-gray-700 mb-1">연락처</label>
+                      <input 
+                        required 
+                        type="tel" 
+                        name="phone"
+                        value={formData.phone}
+                        onChange={handleChange}
+                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary outline-none" 
+                        placeholder="010-0000-0000" 
+                      />
                   </div>
-                  
-                  <div className="grid grid-cols-2 gap-4">
-                    <div>
-                       <label className="block text-sm font-medium text-gray-700 mb-1">연락처</label>
-                       <input required type="tel" className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary outline-none" placeholder="010-0000-0000" />
-                    </div>
-                    <div>
-                       <label className="block text-sm font-medium text-gray-700 mb-1">거주 지역</label>
-                       <input type="text" className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary outline-none" placeholder="서울 강남구" />
-                    </div>
-                  </div>
-
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">관심 분야</label>
-                    <select className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary outline-none">
-                      <option>비즈니스/부업 문의</option>
-                      <option>제품 구매/섭취 문의</option>
-                      <option>기타 문의</option>
-                    </select>
+                      <label className="block text-sm font-medium text-gray-700 mb-1">거주 지역</label>
+                      <input 
+                        type="text" 
+                        name="location"
+                        value={formData.location}
+                        onChange={handleChange}
+                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary outline-none" 
+                        placeholder="서울 강남구" 
+                      />
                   </div>
+                </div>
 
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">문의 내용</label>
-                    <textarea rows={4} className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary outline-none" placeholder="궁금하신 내용을 자유롭게 적어주세요."></textarea>
-                  </div>
-
-                  <div className="bg-blue-50 p-3 rounded-lg text-sm text-blue-800 mb-4">
-                    <p>※ 작성하신 내용은 담당자의 <strong>문자(010-7478-0527)</strong>와 <strong>이메일(mkk032512@naver.com)</strong>로 안내됩니다.</p>
-                  </div>
-
-                  <Button 
-                    variant="primary" 
-                    fullWidth 
-                    disabled={formStatus === 'submitting'}
-                    className={formStatus === 'submitting' ? 'opacity-70 cursor-not-allowed' : ''}
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">관심 분야</label>
+                  <select 
+                    name="category"
+                    value={formData.category}
+                    onChange={handleChange}
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary outline-none"
                   >
-                    {formStatus === 'submitting' ? '전송 중...' : '상담 신청하기'}
-                  </Button>
-                </form>
-              )}
+                    <option>비즈니스/부업 문의</option>
+                    <option>제품 구매/섭취 문의</option>
+                    <option>기타 문의</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">문의 내용</label>
+                  <textarea 
+                    rows={4} 
+                    name="message"
+                    value={formData.message}
+                    onChange={handleChange}
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary outline-none" 
+                    placeholder="궁금하신 내용을 자유롭게 적어주세요."
+                  ></textarea>
+                </div>
+
+                <div className="bg-yellow-50 p-3 rounded-lg text-sm text-yellow-800 mb-4">
+                  <p>※ <strong>상담 신청하기</strong>를 누르면 내용이 복사되고 <strong>카카오톡 오픈채팅</strong>으로 연결됩니다.</p>
+                </div>
+
+                <Button 
+                  variant="primary" 
+                  fullWidth 
+                >
+                  상담 신청하기
+                </Button>
+              </form>
             </div>
 
           </div>
