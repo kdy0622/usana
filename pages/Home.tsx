@@ -37,8 +37,13 @@ const Home: React.FC = () => {
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <Link to="/business">
-                <Button variant="secondary" size="lg">비즈니스 가이드북 보기</Button>
+                <Button variant="secondary" size="lg">비즈니스 가이드</Button>
               </Link>
+              <a href="https://litt.ly/usana.family" target="_blank" rel="noopener noreferrer">
+                <Button variant="white" size="lg">
+                  유사나 자세히보기
+                </Button>
+              </a>
               <Link to="/contact">
                 <Button variant="outline" size="lg" className="border-white text-white hover:bg-white hover:text-primary">
                   1:1 파트너 상담 신청
