@@ -10,6 +10,8 @@ const ProductPage: React.FC = () => {
 
   const products = {
     nutrition: {
+      tabMain: "뉴트리션",
+      tabSub: "(영양제)",
       title: "뉴트리션 (영양제)",
       desc: "세계 최고의 기술력, 인셀리전스 테크놀로지가 적용된 종합 비타민과 미네랄. (인셀리전스 : 구글검색 10632101, 수명연장관련조성물 미국특허 취득)",
       img: PRODUCT_VITAMIN,
@@ -17,6 +19,8 @@ const ProductPage: React.FC = () => {
       catalogUrl: "https://issuu.com/usanakorea/docs/2025_ver.3"
     },
     skincare: {
+      tabMain: "셀라비브",
+      tabSub: "(화장품)",
       title: "셀라비브 (화장품)",
       desc: "피부 본연의 힘을 깨우는 유사나의 독점적인 과학 기술이 담긴 스킨케어.",
       img: PRODUCT_SKINCARE,
@@ -24,6 +28,8 @@ const ProductPage: React.FC = () => {
       catalogUrl: "https://issuu.com/usanakorea/docs/2025_27fcde3a78e679"
     },
     diet: {
+      tabMain: "액티브 뉴트리션",
+      tabSub: "(다이어트)",
       title: "액티브 뉴트리션 (다이어트)",
       desc: "건강한 체중 조절과 에너지 대사를 돕는 과학적인 다이어트 프로그램.",
       img: PRODUCT_DIET,
@@ -50,20 +56,28 @@ const ProductPage: React.FC = () => {
       {/* Product Tabs */}
       <section className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-center mb-12 space-x-2 md:space-x-4 overflow-x-auto">
-            {Object.keys(products).map((key) => (
-              <button
-                key={key}
-                onClick={() => setActiveTab(key as any)}
-                className={`px-6 py-3 rounded-full font-medium transition-all whitespace-nowrap ${
-                  activeTab === key 
-                    ? 'bg-primary text-white shadow-lg scale-105' 
-                    : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
-                }`}
-              >
-                {products[activeTab === key ? activeTab : (key as any)].title}
-              </button>
-            ))}
+          {/* Tabs Container - Scrollable on very small screens, centered otherwise */}
+          <div className="flex justify-center mb-12 overflow-x-auto py-2">
+            <div className="flex space-x-2 md:space-x-4 min-w-max px-2">
+              {(Object.keys(products) as Array<keyof typeof products>).map((key) => (
+                <button
+                  key={key}
+                  onClick={() => setActiveTab(key)}
+                  className={`px-4 py-2 md:px-6 md:py-3 rounded-2xl font-medium transition-all duration-300 ${
+                    activeTab === key 
+                      ? 'bg-primary text-white shadow-lg scale-105' 
+                      : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                  }`}
+                >
+                  <div className="flex flex-col md:flex-row items-center justify-center leading-tight md:space-x-1">
+                    <span className="text-sm md:text-base font-bold">{products[key].tabMain}</span>
+                    <span className={`text-xs md:text-base ${activeTab === key ? 'text-blue-100' : 'text-gray-500'}`}>
+                      {products[key].tabSub}
+                    </span>
+                  </div>
+                </button>
+              ))}
+            </div>
           </div>
 
           <div className="bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-100">
