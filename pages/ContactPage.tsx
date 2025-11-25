@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import SectionTitle from '../components/UI/SectionTitle';
 import Button from '../components/UI/Button';
 import { CONTACT_BG } from '../images/assets';
-import { Phone, Mail, MessageCircle, Plus, Minus, CheckCircle2, Globe } from 'lucide-react';
+import { Phone, Mail, MessageCircle, Plus, Minus, CheckCircle2, Globe, Laptop } from 'lucide-react';
 
 const FAQItem = ({ question, answer }: { question: string; answer: string }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -141,6 +141,20 @@ const ContactPage: React.FC = () => {
                   <div>
                     <div className="text-sm text-gray-500">개인 홈페이지</div>
                     <div className="font-bold">litt.ly/usana.family</div>
+                  </div>
+                </a>
+                <a 
+                  href="https://uwell.usana.com" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="flex items-center p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow"
+                >
+                   <div className="bg-indigo-100 p-3 rounded-full mr-4 text-indigo-700">
+                    <Laptop />
+                  </div>
+                  <div>
+                    <div className="text-sm text-gray-500">유사나 퍼스널 웹사이트</div>
+                    <div className="font-bold">uwell.usana.com</div>
                   </div>
                 </a>
               </div>
