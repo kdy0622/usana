@@ -2,7 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 
 interface SectionTitleProps {
-  title: string;
+  title: React.ReactNode;
   subtitle?: string;
   align?: 'left' | 'center';
   color?: 'dark' | 'white';

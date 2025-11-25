@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import SectionTitle from '../components/UI/SectionTitle';
@@ -56,9 +57,10 @@ const ProductPage: React.FC = () => {
       {/* Product Tabs */}
       <section className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Tabs Container - Scrollable on very small screens, centered otherwise */}
-          <div className="flex justify-center mb-12 overflow-x-auto py-2">
-            <div className="flex space-x-2 md:space-x-4 min-w-max px-2">
+          {/* Tabs Container - Scrollable on very small screens, centered on desktop */}
+          {/* Changed justify-center to justify-start for mobile to prevent clipping the first item */}
+          <div className="flex justify-start md:justify-center mb-12 overflow-x-auto py-2 -mx-4 px-4 md:mx-0 md:px-0 scrollbar-hide">
+            <div className="flex space-x-2 md:space-x-4 min-w-max">
               {(Object.keys(products) as Array<keyof typeof products>).map((key) => (
                 <button
                   key={key}
@@ -70,8 +72,8 @@ const ProductPage: React.FC = () => {
                   }`}
                 >
                   <div className="flex flex-col md:flex-row items-center justify-center leading-tight md:space-x-1">
-                    <span className="text-sm md:text-base font-bold">{products[key].tabMain}</span>
-                    <span className={`text-xs md:text-base ${activeTab === key ? 'text-blue-100' : 'text-gray-500'}`}>
+                    <span className="text-sm md:text-base font-bold whitespace-nowrap">{products[key].tabMain}</span>
+                    <span className={`text-xs md:text-base whitespace-nowrap ${activeTab === key ? 'text-blue-100' : 'text-gray-500'}`}>
                       {products[key].tabSub}
                     </span>
                   </div>
