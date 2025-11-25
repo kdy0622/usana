@@ -2,40 +2,80 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import SectionTitle from '../components/UI/SectionTitle';
-import { PRODUCT_VITAMIN, PRODUCT_SKINCARE, PRODUCT_DIET } from '../images/assets';
+import { PRODUCT_VITAMIN, PRODUCT_SKINCARE, PRODUCT_DIET, SYSTEM_IMG } from '../images/assets';
 import Button from '../components/UI/Button';
-import { Link } from 'react-router-dom';
+import { ExternalLink, ShoppingCart, BookOpen, MousePointerClick } from 'lucide-react';
 
 const ProductPage: React.FC = () => {
-  const [activeTab, setActiveTab] = useState<'nutrition' | 'skincare' | 'diet'>('nutrition');
+  const [activeTab, setActiveTab] = useState<'nutrition' | 'skincare' | 'foodEnergy' | 'all'>('nutrition');
 
   const products = {
     nutrition: {
-      tabMain: "뉴트리션",
+      tabName: "뉴트리션",
       tabSub: "(영양제)",
       title: "뉴트리션 (영양제)",
-      desc: "세계 최고의 기술력, 인셀리전스 테크놀로지가 적용된 종합 비타민과 미네랄. (인셀리전스 : 구글검색 10632101, 수명연장관련조성물 미국특허 취득)",
+      desc: "세계 최고의 기술력, 인셀리전스 테크놀로지가 적용된 종합 비타민과 미네랄",
       img: PRODUCT_VITAMIN,
-      items: ["헬스팩: 국가대표 선수들이 섭취하는 종합 영양제", "프로후라바놀C300: 강력한 항산화 포뮬러", "헤파실: 간 건강을 위한 선택"],
-      catalogUrl: "https://issuu.com/usanakorea/docs/2025_ver.3"
+      items: [
+        { text: "1992년 이후 30년이상 기술력으로 만드는 자체 포물러", link: "https://issuu.com/usanakorea/docs/business_guidebook_vol2_2020/12" },
+        { text: "의약품 수준의 제조품질로 직접 제조 (FDA, GMP)", link: "https://youtu.be/JWTTVbpuqjM" },
+        { text: "150명의 과학자 연구개발", link: "https://youtu.be/oR23L9jRs40" },
+        { text: "인셀리전스 : 구글검색 10632101, 수명연장관련조성물 미국특허 취득", link: "https://youtu.be/MWJSTu16pb4" },
+        { text: "영양제비교가이드 효능 안정성 1등(1999년 부터 26년간)", link: "https://youtu.be/WlGIbe0Hrhg" },
+        { text: "전세계 5천명 이상의 엘리트선수들의 선택", link: "https://youtu.be/rFlCroMqFcU" },
+        { text: "캐나다 의사 처방전(CPS), 미국 의사용 탁상편(PDR) 유사나제품 등재", link: "https://issuu.com/usanakorea/docs/business_guidebook_vol2_2020/18" }
+      ],
+      link: "https://uwell.usana.com/ux/cart/kr-KR/category/123",
+      catalogLink: "https://issuu.com/usanakorea/docs/2025_ver.3"
     },
     skincare: {
-      tabMain: "셀라비브",
+      tabName: "스킨케어",
       tabSub: "(화장품)",
-      title: "셀라비브 (화장품)",
-      desc: "피부 본연의 힘을 깨우는 유사나의 독점적인 과학 기술이 담긴 스킨케어.",
+      title: "스킨케어 (화장품)",
+      desc: "피부 본연의 힘을 깨우는 유사나 독점 과학기술",
       img: PRODUCT_SKINCARE,
-      items: ["퍼펙팅 토너: 수분 밸런스 유지", "바이탈라이징 세럼: 탄력 있는 피부 관리", "하이드레이팅 아이 에센스: 눈가 피부 관리"],
-      catalogUrl: "https://issuu.com/usanakorea/docs/2025_27fcde3a78e679"
+      items: [
+        { text: "인셀리전스 세포과학 기술 접목", link: "https://youtu.be/MWJSTu16pb4" },
+        { text: "풍부한 항산화 성분으로 피부세포 영양보충", link: "https://youtu.be/nN7IUBqu2hI" },
+        { text: "파라벤, 설페이트 등 경피독프리 특허받은 자가보존 포뮬러", link: "https://youtu.be/ALJwDTDUzSE" },
+        { text: "바이탈라이징 세럼✨보습 & 흡수력 & 유분기 & pH 테스트 체험🔍", link: "https://youtu.be/l_Xd0cKkBdQ" },
+        { text: "컨투어링 페이스 앤 넥 크림✨보습 & pH 테스트 체험🔍", link: "https://youtu.be/c4IgWuf793Y" },
+        { text: "트리플 액션 아이크림✨탄력 & pH 테스트 체험🔍", link: "https://youtu.be/aDwQ2FTQzWU" }
+      ],
+      link: "https://uwell.usana.com/ux/cart/category/121",
+      catalogLink: "https://issuu.com/usanakorea/docs/2025_27fcde3a78e679"
     },
-    diet: {
-      tabMain: "액티브 뉴트리션",
+    foodEnergy: {
+      tabName: "푸드&에너지",
       tabSub: "(다이어트)",
-      title: "액티브 뉴트리션 (다이어트)",
-      desc: "건강한 체중 조절과 에너지 대사를 돕는 과학적인 다이어트 프로그램.",
+      title: "푸드&에너지 (다이어트)",
+      desc: "건강한 체중 조절과 에너지 대사를 돕는 과학적인 다이어트 프로그램",
       img: PRODUCT_DIET,
-      items: ["뉴트리밀: 균형 잡힌 식사 대용 쉐이크", "화이버지 플러스: 장 건강을 위한 식이섬유", "단백질 쉐이크: 근육 건강 지원"],
-      catalogUrl: "https://issuu.com/usanakorea/docs/2025_ver.3"
+      items: [
+        { text: "건강한 식사대용식(240kcal, 20g단백질, 9g 식이섬유, 15가지 영양소)", link: "https://youtu.be/iddIoGfTDK4" },
+        { text: "요요없는 건강한 다이어트", link: "https://youtu.be/hyiD5W3odOw?si=m-TtPmj2_5LtYv3G" },
+        { text: "소화 건강 지원(유기농 곡물효소)", link: "https://youtu.be/VP14Q_TesNI" },
+        { text: "혈행 건강 지원(산화질소 써큘레이트플러스)", link: "https://youtu.be/I53V1uD5IUA?si=G5VhqAVIX3_1o2Lc" },
+        { text: "장 건강 지원(식이섬유 화이버지)", link: "https://youtu.be/Qm7bOU5fxsg" },
+        { text: "근육 건강 지원(코어 아미노)", link: "https://youtu.be/PA7js_JMYQU" },
+        { text: "건강한 수분섭취(허브티믹스&미네랄드링크)", link: "https://youtu.be/1w8-9PzUCxs" }
+      ],
+      link: "https://uwell.usana.com/ux/cart/kr-KR/category/221",
+      catalogLink: "https://issuu.com/usanakorea/docs/2025_ver.3"
+    },
+    all: {
+      tabName: "전체제품",
+      tabSub: "(쇼핑몰)",
+      title: "전체제품 보기",
+      desc: "유사나의 모든 제품을 공식 쇼핑몰에서 확인하세요.",
+      img: SYSTEM_IMG,
+      items: [
+        { text: "뉴트리션, 스킨케어, 푸드&에너지 전 라인업" },
+        { text: "회원가입 없이 둘러보기 가능" },
+        { text: "본사 직배송 정품 보장" }
+      ],
+      link: "https://uwell.usana.com/ux/dotcom/kor-KR/home",
+      catalogLink: "https://issuu.com/usanakorea/docs/2025_ver.3"
     }
   };
 
@@ -57,8 +97,7 @@ const ProductPage: React.FC = () => {
       {/* Product Tabs */}
       <section className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Tabs Container - Scrollable on very small screens, centered on desktop */}
-          {/* Changed justify-center to justify-start for mobile to prevent clipping the first item */}
+          {/* Tabs Container */}
           <div className="flex justify-start md:justify-center mb-12 overflow-x-auto py-2 -mx-4 px-4 md:mx-0 md:px-0 scrollbar-hide">
             <div className="flex space-x-2 md:space-x-4 min-w-max">
               {(Object.keys(products) as Array<keyof typeof products>).map((key) => (
@@ -72,10 +111,12 @@ const ProductPage: React.FC = () => {
                   }`}
                 >
                   <div className="flex flex-col md:flex-row items-center justify-center leading-tight md:space-x-1">
-                    <span className="text-sm md:text-base font-bold whitespace-nowrap">{products[key].tabMain}</span>
-                    <span className={`text-xs md:text-base whitespace-nowrap ${activeTab === key ? 'text-blue-100' : 'text-gray-500'}`}>
-                      {products[key].tabSub}
-                    </span>
+                    <span className="text-sm md:text-base font-bold whitespace-nowrap">{products[key].tabName}</span>
+                    {products[key].tabSub && (
+                      <span className={`text-xs md:text-base whitespace-nowrap ${activeTab === key ? 'text-blue-100' : 'text-gray-500'}`}>
+                        {products[key].tabSub}
+                      </span>
+                    )}
                   </div>
                 </button>
               ))}
@@ -109,16 +150,41 @@ const ProductPage: React.FC = () => {
                   
                   <ul className="space-y-4 mb-8">
                     {products[activeTab].items.map((item, idx) => (
-                      <li key={idx} className="flex items-center text-gray-700">
-                        <span className="w-2 h-2 bg-secondary rounded-full mr-3"></span>
-                        {item}
+                      <li key={idx} className="flex items-start text-gray-700">
+                        <span className="w-2 h-2 bg-secondary rounded-full mr-3 mt-2 flex-shrink-0"></span>
+                        {item.link ? (
+                          <a 
+                            href={item.link} 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                            className="leading-relaxed hover:text-blue-600 transition-colors font-medium flex items-center group"
+                          >
+                            <span className="border-b border-transparent group-hover:border-blue-600">
+                              {item.text}
+                            </span>
+                            <MousePointerClick size={16} className="ml-2 text-secondary opacity-0 group-hover:opacity-100 transition-opacity" />
+                          </a>
+                        ) : (
+                          <span className="leading-relaxed">{item.text}</span>
+                        )}
                       </li>
                     ))}
                   </ul>
                   
-                  <a href={products[activeTab].catalogUrl} target="_blank" rel="noopener noreferrer">
-                    <Button variant="outline">제품 카탈로그 보기</Button>
-                  </a>
+                  <div className="flex flex-col sm:flex-row gap-3">
+                    <a href={products[activeTab].link} target="_blank" rel="noopener noreferrer">
+                      <Button variant="primary" className="w-full sm:w-auto">
+                        제품 구매하기 <ShoppingCart size={18} className="ml-2 inline-block" />
+                      </Button>
+                    </a>
+                    {products[activeTab].catalogLink && (
+                      <a href={products[activeTab].catalogLink} target="_blank" rel="noopener noreferrer">
+                        <Button variant="outline" className="w-full sm:w-auto">
+                          카탈로그 보기 <BookOpen size={18} className="ml-2 inline-block" />
+                        </Button>
+                      </a>
+                    )}
+                  </div>
                 </motion.div>
               </div>
             </div>
@@ -129,13 +195,20 @@ const ProductPage: React.FC = () => {
       {/* Certifications */}
       <section className="py-16 bg-light">
         <div className="max-w-7xl mx-auto px-4 text-center">
-          <SectionTitle title="믿을 수 있는 품질" subtitle="전 세계 24개국에서 검증받은 안전성" />
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 opacity-70 grayscale hover:grayscale-0 transition-all duration-500">
-            {/* Placeholders for Logos */}
-            {['FDA 등록 시설', 'NSF 인터내셔널', 'ConsumerLab 인증', 'USP 약전 준수'].map((cert, idx) => (
-              <div key={idx} className="flex flex-col items-center justify-center p-6 bg-white rounded-lg shadow-sm h-32">
-                <div className="text-primary font-bold text-xl mb-2">CERTIFIED</div>
-                <span className="text-sm text-gray-500">{cert}</span>
+          <SectionTitle title="믿을 수 있는 품질" subtitle="전 세계 25개국에서 검증받은 안전성" />
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+            {[
+              { name: 'FDA GMP 등록 시설', color: 'bg-blue-900', text: 'FDA GMP' },
+              { name: 'NSF 인터내셔널 스포츠인증', color: 'bg-blue-600', text: 'NSF Sport' },
+              { name: 'ConsumerLab 인증', color: 'bg-red-700', text: 'ConsumerLab' },
+              { name: 'USA', color: 'bg-gray-800', text: 'Made in USA' }
+            ].map((cert, idx) => (
+              <div key={idx} className="flex flex-col items-center justify-center p-6 bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow h-40 group">
+                {/* Logo Placeholder */}
+                <div className={`w-24 h-24 rounded-full flex items-center justify-center text-white font-bold text-center p-2 mb-3 shadow-inner ${cert.color} transform group-hover:scale-110 transition-transform duration-300`}>
+                   {cert.text}
+                </div>
+                <span className="text-sm font-medium text-gray-700">{cert.name}</span>
               </div>
             ))}
           </div>
