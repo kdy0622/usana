@@ -2,9 +2,8 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import SectionTitle from '../components/UI/SectionTitle';
 import Button from '../components/UI/Button';
-import { Link } from 'react-router-dom';
 import { BUSINESS_PLAN, SYSTEM_IMG } from '../images/assets';
-import { CheckCircle2, TrendingUp, Infinity, RefreshCcw } from 'lucide-react';
+import { CheckCircle2, TrendingUp, Infinity, RefreshCcw, PlayCircle } from 'lucide-react';
 
 const BusinessPage: React.FC = () => {
   return (
@@ -38,7 +37,15 @@ const BusinessPage: React.FC = () => {
               <img src={SYSTEM_IMG} alt="System" className="rounded-xl shadow-lg" />
             </motion.div>
             <div>
-              <SectionTitle title="플랫폼 비즈니스란?" align="left" />
+              <SectionTitle 
+                title={
+                  <a href="https://youtu.be/S-_q43_16uc" target="_blank" rel="noopener noreferrer" className="flex items-center hover:text-blue-600 transition-colors group cursor-pointer">
+                    플랫폼 비즈니스란?
+                    <PlayCircle className="ml-3 text-secondary group-hover:scale-110 transition-transform" size={32} />
+                  </a>
+                } 
+                align="left" 
+              />
               <p className="text-gray-600 mb-6 leading-relaxed">
                 쿠팡, 우버, 에어비앤비, 배달의민족의 공통점은 무엇일까요? 바로 '플랫폼'입니다.
                 유사나 비즈니스는 여러분이 직접 제품을 제조하거나 배송할 필요가 없습니다.
@@ -55,7 +62,15 @@ const BusinessPage: React.FC = () => {
       {/* Compensation Plan Features */}
       <section className="py-20 bg-light">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <SectionTitle title="유사나 보상 플랜의 4가지 특징" subtitle="업계에서 가장 공정하고 합리적인 보상 시스템" />
+          <SectionTitle 
+            title={
+              <a href="https://youtu.be/SXz2xqBXEwU" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center hover:text-blue-600 transition-colors group cursor-pointer">
+                유사나 보상 플랜의 4가지 특징
+                <PlayCircle className="ml-3 text-secondary group-hover:scale-110 transition-transform" size={32} />
+              </a>
+            }
+            subtitle="업계에서 가장 공정하고 합리적인 보상 시스템" 
+          />
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
@@ -90,11 +105,11 @@ const BusinessPage: React.FC = () => {
           <p className="text-gray-600 mb-8">
             초기 비용부터 월 천만 원 소득 플랜까지, 상세한 가이드북을 보내드립니다.
           </p>
-          <Link to="/contact">
+          <a href="https://youtu.be/zjdohroy7as" target="_blank" rel="noopener noreferrer">
             <Button variant="primary" size="lg">
-              수익 시뮬레이션 자료 요청하기
+              유사나 보상플랜 <PlayCircle size={20} className="ml-2" />
             </Button>
-          </Link>
+          </a>
         </div>
       </section>
     </div>

@@ -67,35 +67,45 @@ const Home: React.FC = () => {
               { 
                 img: FEATURE_INCOME, 
                 title: "불안한 노후", 
-                desc: "100세 시대, 은퇴 후 40년을 지탱할 자산이 준비되어 있나요?" 
+                desc: "100세 시대, 은퇴 후 40년을 지탱할 자산이 준비되어 있나요?",
+                link: "https://youtu.be/_oPPwGgTu1U"
               },
               { 
                 img: FEATURE_HEALTH, 
                 title: "건강의 위기", 
-                desc: "스트레스와 환경 오염 속에서 나와 가족의 건강을 지킬 방법은?" 
+                desc: "스트레스와 환경 오염 속에서 나와 가족의 건강을 지킬 방법은?",
+                link: "https://youtu.be/fP8_RI1GIGk"
               },
               { 
                 img: FEATURE_FREEDOM, 
                 title: "시간의 구속", 
-                desc: "돈을 벌기 위해 나의 소중한 시간을 맞바꾸고 있지는 않나요?" 
+                desc: "돈을 벌기 위해 나의 소중한 시간을 맞바꾸고 있지는 않나요?",
+                link: "https://youtu.be/uLYwkhd3q6M"
               },
             ].map((item, index) => (
-              <motion.div 
+              <motion.a 
                 key={index}
+                href={item.link}
+                target="_blank"
+                rel="noopener noreferrer"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.2 }}
-                className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow"
+                className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all hover:-translate-y-1 block cursor-pointer group"
               >
-                <div className="h-48 overflow-hidden">
-                  <img src={item.img} alt={item.title} className="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
+                <div className="h-48 overflow-hidden relative">
+                  <img src={item.img} alt={item.title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
+                  <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors" />
                 </div>
                 <div className="p-6">
-                  <h3 className="text-xl font-bold text-primary mb-2">{item.title}</h3>
+                  <h3 className="text-xl font-bold text-primary mb-2 flex items-center justify-between">
+                    {item.title}
+                    <ArrowRight size={20} className="opacity-0 group-hover:opacity-100 transition-opacity text-secondary" />
+                  </h3>
                   <p className="text-gray-600">{item.desc}</p>
                 </div>
-              </motion.div>
+              </motion.a>
             ))}
           </div>
         </div>
@@ -129,11 +139,11 @@ const Home: React.FC = () => {
                 ))}
               </div>
               <div className="mt-8">
-                <Link to="/product">
+                <a href="https://youtu.be/rR2dtRkglDg" target="_blank" rel="noopener noreferrer">
                   <Button variant="primary">
-                    제품 철학 더 알아보기 <ArrowRight size={18} className="ml-2" />
+                    유사나의 특별함 <ArrowRight size={18} className="ml-2" />
                   </Button>
-                </Link>
+                </a>
               </div>
             </div>
             <div className="md:w-1/2">
