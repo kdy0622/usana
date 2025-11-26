@@ -25,19 +25,34 @@ const Header: React.FC = () => {
   ];
 
   const isActive = (path: string) => location.pathname === path;
+  const isHome = location.pathname === '/';
+  // Header is transparent only on Home page when not scrolled
+  const isTransparent = isHome && !isScrolled;
+
+  const textColorClass = (path: string) => {
+    if (isActive(path)) {
+      // Use Green (Secondary) on dark background for contrast, Primary on light background
+      return isTransparent ? 'text-secondary font-bold' : 'text-primary font-bold';
+    }
+    return isTransparent ? 'text-white hover:text-gray-200' : 'text-gray-800 hover:text-primary';
+  };
 
   return (
     <header 
       className={`fixed w-full z-50 transition-all duration-300 ${
-        isScrolled ? 'bg-white/90 backdrop-blur-md shadow-md py-3' : 'bg-transparent py-5'
+        !isTransparent ? 'bg-white/90 backdrop-blur-md shadow-md py-3' : 'bg-transparent py-5'
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center">
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-2" onClick={() => setIsMobileMenuOpen(false)}>
-            <div className="text-2xl font-bold text-primary tracking-tighter">USANA</div>
-            <div className="hidden sm:block text-sm text-gray-600 border-l border-gray-300 pl-2">
+            <div className={`text-2xl font-bold tracking-tighter transition-colors ${isTransparent ? 'text-white' : 'text-primary'}`}>
+              USANA
+            </div>
+            <div className={`hidden sm:block text-sm border-l pl-2 transition-colors ${
+              isTransparent ? 'text-gray-200 border-gray-400' : 'text-gray-600 border-gray-300'
+            }`}>
               {PERSONAL_INFO.TITLE}
             </div>
           </Link>
@@ -48,11 +63,7 @@ const Header: React.FC = () => {
               <Link
                 key={link.name}
                 to={link.path}
-                className={`text-base font-medium transition-colors ${
-                  isActive(link.path) 
-                    ? 'text-primary font-bold' 
-                    : isScrolled ? 'text-gray-700 hover:text-primary' : 'text-gray-800 hover:text-primary'
-                }`}
+                className={`text-base font-medium transition-colors ${textColorClass(link.path)}`}
               >
                 {link.name}
               </Link>
@@ -66,7 +77,7 @@ const Header: React.FC = () => {
 
           {/* Mobile Menu Button */}
           <button 
-            className="md:hidden p-2 text-gray-600"
+            className={`md:hidden p-2 transition-colors ${isTransparent ? 'text-white' : 'text-gray-600'}`}
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >
             {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
