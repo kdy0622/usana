@@ -4,6 +4,7 @@ import SectionTitle from '../components/UI/SectionTitle';
 import Button from '../components/UI/Button';
 import { CONTACT_BG } from '../images/assets';
 import { Phone, Mail, MessageCircle, Plus, Minus, CheckCircle2, Globe, Laptop } from 'lucide-react';
+import { PERSONAL_INFO } from '../constants';
 
 const FAQItem = ({ question, answer }: { question: string; answer: string }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -63,7 +64,7 @@ const ContactPage: React.FC = () => {
       alert('카카오톡 오픈채팅방으로 이동합니다.\n상담 내용을 입력해주세요.');
     }
 
-    window.open('https://open.kakao.com/o/sQU9Xt3h', '_blank');
+    window.open(PERSONAL_INFO.KAKAO_OPENCHAT, '_blank');
     
     // Reset form after redirect
     setFormData({
@@ -98,7 +99,7 @@ const ContactPage: React.FC = () => {
               
               <div className="flex flex-col gap-4 mb-12">
                 <a 
-                  href="https://open.kakao.com/o/sQU9Xt3h" 
+                  href={PERSONAL_INFO.KAKAO_OPENCHAT} 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="flex items-center p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow"
@@ -111,26 +112,26 @@ const ContactPage: React.FC = () => {
                     <div className="font-bold">실시간 상담하기</div>
                   </div>
                 </a>
-                <a href="tel:01074780527" className="flex items-center p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow">
+                <a href={`tel:${PERSONAL_INFO.PHONE.replace(/-/g, '')}`} className="flex items-center p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow">
                    <div className="bg-green-100 p-3 rounded-full mr-4 text-green-700">
                     <Phone />
                   </div>
                   <div>
                     <div className="text-sm text-gray-500">전화 문의</div>
-                    <div className="font-bold">010-7478-0527</div>
+                    <div className="font-bold">{PERSONAL_INFO.PHONE}</div>
                   </div>
                 </a>
-                <a href="mailto:mkk032512@naver.com" className="flex items-center p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow">
+                <a href={`mailto:${PERSONAL_INFO.EMAIL}`} className="flex items-center p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow">
                    <div className="bg-blue-100 p-3 rounded-full mr-4 text-blue-700">
                     <Mail />
                   </div>
                   <div>
                     <div className="text-sm text-gray-500">이메일 문의</div>
-                    <div className="font-bold">mkk032512@naver.com</div>
+                    <div className="font-bold">{PERSONAL_INFO.EMAIL}</div>
                   </div>
                 </a>
                 <a 
-                  href="https://litt.ly/usana.family" 
+                  href={PERSONAL_INFO.LITTLY} 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="flex items-center p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow"
@@ -140,11 +141,11 @@ const ContactPage: React.FC = () => {
                   </div>
                   <div>
                     <div className="text-sm text-gray-500">개인 홈페이지</div>
-                    <div className="font-bold">litt.ly/usana.family</div>
+                    <div className="font-bold">{PERSONAL_INFO.LITTLY.replace('https://', '')}</div>
                   </div>
                 </a>
                 <a 
-                  href="https://uwell.usana.com" 
+                  href={PERSONAL_INFO.WEBSITE} 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="flex items-center p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow"
@@ -154,7 +155,7 @@ const ContactPage: React.FC = () => {
                   </div>
                   <div>
                     <div className="text-sm text-gray-500">유사나 퍼스널 웹사이트</div>
-                    <div className="font-bold">uwell.usana.com</div>
+                    <div className="font-bold">{PERSONAL_INFO.WEBSITE.replace('https://', '')}</div>
                   </div>
                 </a>
               </div>

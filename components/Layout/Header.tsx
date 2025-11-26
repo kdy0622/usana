@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, ChevronRight } from 'lucide-react';
 import Button from '../UI/Button';
+import { PERSONAL_INFO } from '../../constants';
 
 const Header: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -37,7 +38,7 @@ const Header: React.FC = () => {
           <Link to="/" className="flex items-center space-x-2" onClick={() => setIsMobileMenuOpen(false)}>
             <div className="text-2xl font-bold text-primary tracking-tighter">USANA</div>
             <div className="hidden sm:block text-sm text-gray-600 border-l border-gray-300 pl-2">
-              Independent Associate
+              {PERSONAL_INFO.TITLE}
             </div>
           </Link>
 
@@ -56,7 +57,7 @@ const Header: React.FC = () => {
                 {link.name}
               </Link>
             ))}
-            <a href="https://open.kakao.com/o/sQU9Xt3h" target="_blank" rel="noopener noreferrer">
+            <a href={PERSONAL_INFO.KAKAO_OPENCHAT} target="_blank" rel="noopener noreferrer">
               <Button variant="secondary" size="sm">
                 무료 상담 신청
               </Button>
@@ -91,7 +92,7 @@ const Header: React.FC = () => {
               </Link>
             ))}
              <a 
-               href="https://open.kakao.com/o/sQU9Xt3h" 
+               href={PERSONAL_INFO.KAKAO_OPENCHAT} 
                target="_blank" 
                rel="noopener noreferrer"
                onClick={() => setIsMobileMenuOpen(false)}

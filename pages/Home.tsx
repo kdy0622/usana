@@ -1,10 +1,12 @@
+
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { TrendingUp, ShieldCheck, Users, ArrowRight } from 'lucide-react';
+import { TrendingUp, ShieldCheck, Users, ArrowRight, Bot } from 'lucide-react';
 import Button from '../components/UI/Button';
 import SectionTitle from '../components/UI/SectionTitle';
 import { HERO_BG, FEATURE_INCOME, FEATURE_HEALTH, FEATURE_FREEDOM } from '../images/assets';
+import { PERSONAL_INFO } from '../constants';
 
 const Home: React.FC = () => {
   return (
@@ -35,21 +37,34 @@ const Home: React.FC = () => {
               시간과 공간의 제약 없는 유사나 플랫폼 비즈니스로,<br className="hidden md:block" />
               평생 소득의 파이프라인을 지금 구축하세요.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4">
-              <Link to="/business">
-                <Button variant="secondary" size="lg">비즈니스 가이드</Button>
+            
+            {/* 2x2 Button Grid */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-xl">
+              <Link to="/business" className="w-full">
+                <Button variant="primary" size="lg" fullWidth className="bg-blue-700 hover:bg-blue-600">
+                  비즈니스 가이드
+                </Button>
               </Link>
-              <a href="https://litt.ly/usana.family" target="_blank" rel="noopener noreferrer">
-                <Button variant="white" size="lg">
+              
+              <a href={PERSONAL_INFO.LITTLY} target="_blank" rel="noopener noreferrer" className="w-full">
+                <Button variant="white" size="lg" fullWidth>
                   유사나 자세히보기
                 </Button>
               </a>
-              <Link to="/contact">
-                <Button variant="outline" size="lg" className="border-white text-white hover:bg-white hover:text-primary">
+              
+              <Link to="/contact" className="w-full">
+                <Button variant="outline" size="lg" fullWidth className="border-white text-white hover:bg-white hover:text-primary">
                   1:1 파트너 상담 신청
                 </Button>
               </Link>
+              
+              <a href={PERSONAL_INFO.AI_CONSULT_HEALTH} target="_blank" rel="noopener noreferrer" className="w-full">
+                <Button variant="secondary" size="lg" fullWidth className="border-2 border-secondary hover:bg-white hover:text-secondary">
+                  <Bot className="mr-2" size={20}/> AI 건강상담
+                </Button>
+              </a>
             </div>
+
           </motion.div>
         </div>
       </section>
@@ -101,7 +116,7 @@ const Home: React.FC = () => {
                 <div className="p-6">
                   <h3 className="text-xl font-bold text-primary mb-2 flex items-center justify-between">
                     {item.title}
-                    <ArrowRight size={20} className="opacity-0 group-hover:opacity-100 transition-opacity text-secondary" />
+                    <ArrowRight size={20} className="text-secondary" />
                   </h3>
                   <p className="text-gray-600">{item.desc}</p>
                 </div>
@@ -170,7 +185,7 @@ const Home: React.FC = () => {
           </p>
           <Link to="/contact">
             <Button variant="secondary" size="lg" className="shadow-lg transform hover:scale-105 transition-transform">
-              무료 비즈니스 상담 신청하기
+              무료 비즈니스 상담 신청하기 <ArrowRight size={20} className="ml-2" />
             </Button>
           </Link>
         </div>

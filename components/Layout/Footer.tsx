@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { Instagram, MessageCircle, Mail, Globe } from 'lucide-react';
+import { PERSONAL_INFO } from '../../constants';
 
 const Footer: React.FC = () => {
   return (
@@ -16,7 +17,7 @@ const Footer: React.FC = () => {
             </p>
             <div className="flex space-x-4">
               <a 
-                href="https://www.instagram.com/mk032512?igsh=YmF2Nms0Z3hub2ky" 
+                href={PERSONAL_INFO.INSTAGRAM} 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="text-gray-400 hover:text-secondary transition-colors"
@@ -24,7 +25,7 @@ const Footer: React.FC = () => {
                 <Instagram size={24} />
               </a>
               <a 
-                href="https://open.kakao.com/o/sQU9Xt3h" 
+                href={PERSONAL_INFO.KAKAO_OPENCHAT} 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="text-gray-400 hover:text-secondary transition-colors"
@@ -32,13 +33,13 @@ const Footer: React.FC = () => {
                 <MessageCircle size={24} />
               </a>
               <a 
-                href="mailto:mkk032512@naver.com" 
+                href={`mailto:${PERSONAL_INFO.EMAIL}`} 
                 className="text-gray-400 hover:text-secondary transition-colors"
               >
                 <Mail size={24} />
               </a>
               <a 
-                href="https://litt.ly/usana.family" 
+                href={PERSONAL_INFO.LITTLY} 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="text-gray-400 hover:text-secondary transition-colors"
@@ -71,7 +72,7 @@ const Footer: React.FC = () => {
         </div>
         
         <div className="pt-8 text-center text-gray-500 text-sm">
-          &copy; {new Date().getFullYear()} USANA Independent Associate. All rights reserved.
+          &copy; {new Date().getFullYear()} {PERSONAL_INFO.TITLE}. All rights reserved.
         </div>
       </div>
     </footer>

@@ -1,6 +1,8 @@
+
 import React from 'react';
 import { motion } from 'framer-motion';
 import SectionTitle from '../components/UI/SectionTitle';
+import Button from '../components/UI/Button';
 import { MENTOR_PROFILE, TEAM_ACTIVITY } from '../images/assets';
 import { Quote, Bot } from 'lucide-react';
 
@@ -64,6 +66,16 @@ const MentorPage: React.FC = () => {
                 <item.icon className="text-secondary mb-4 opacity-80" size={32} />
                 <h3 className="text-xl font-bold text-dark mb-3">{item.title}</h3>
                 <p className="text-gray-600 flex-grow">{item.desc}</p>
+                {item.title === "AI활용 전문가 팀" && (
+                  <div className="mt-6 pt-4 border-t border-gray-100">
+                    <a href="https://litt.ly/dreamon" target="_blank" rel="noopener noreferrer">
+                      <Button variant="primary" size="sm" fullWidth>
+                        비즈니스 툴
+                      </Button>
+                    </a>
+                    <p className="text-xs text-gray-400 mt-2 text-center">(비즈니스파트너 전용)</p>
+                  </div>
+                )}
               </div>
             ))}
           </div>

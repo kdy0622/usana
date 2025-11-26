@@ -4,7 +4,8 @@ import { motion } from 'framer-motion';
 import SectionTitle from '../components/UI/SectionTitle';
 import { PRODUCT_VITAMIN, PRODUCT_SKINCARE, PRODUCT_DIET, SYSTEM_IMG } from '../images/assets';
 import Button from '../components/UI/Button';
-import { ExternalLink, ShoppingCart, BookOpen, MousePointerClick } from 'lucide-react';
+import { ExternalLink, ShoppingCart, BookOpen, ArrowRight, Bot } from 'lucide-react';
+import { PERSONAL_INFO } from '../constants';
 
 const ProductPage: React.FC = () => {
   const [activeTab, setActiveTab] = useState<'nutrition' | 'skincare' | 'foodEnergy' | 'all'>('nutrition');
@@ -145,7 +146,23 @@ const ProductPage: React.FC = () => {
                    animate={{ opacity: 1, x: 0 }}
                    transition={{ duration: 0.5 }}
                 >
-                  <h3 className="text-3xl font-bold text-primary mb-4">{products[activeTab].title}</h3>
+                  <div className="flex flex-col md:flex-row md:items-center gap-3 mb-4 flex-wrap">
+                    <h3 className="text-3xl font-bold text-primary">{products[activeTab].title}</h3>
+                    {activeTab === 'nutrition' && (
+                        <a href={PERSONAL_INFO.AI_CONSULT_HEALTH} target="_blank" rel="noopener noreferrer">
+                            <Button variant="secondary" size="sm" className="rounded-full px-4 py-1 text-sm">
+                                <Bot size={16} className="mr-1.5"/> 건강상담
+                            </Button>
+                        </a>
+                    )}
+                    {activeTab === 'skincare' && (
+                        <a href={PERSONAL_INFO.AI_CONSULT_SKINCARE} target="_blank" rel="noopener noreferrer">
+                            <Button variant="secondary" size="sm" className="rounded-full px-4 py-1 text-sm">
+                                <Bot size={16} className="mr-1.5"/> 스킨케어상담
+                            </Button>
+                        </a>
+                    )}
+                  </div>
                   <p className="text-gray-600 text-lg mb-8">{products[activeTab].desc}</p>
                   
                   <ul className="space-y-4 mb-8">
@@ -162,7 +179,7 @@ const ProductPage: React.FC = () => {
                             <span className="border-b border-transparent group-hover:border-blue-600">
                               {item.text}
                             </span>
-                            <MousePointerClick size={16} className="ml-2 text-secondary opacity-0 group-hover:opacity-100 transition-opacity" />
+                            <ArrowRight size={16} className="ml-2 text-secondary" />
                           </a>
                         ) : (
                           <span className="leading-relaxed">{item.text}</span>
