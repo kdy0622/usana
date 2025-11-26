@@ -6,6 +6,7 @@ export const PERSONAL_INFO = {
   EMAIL: "mkk032512@naver.com",
   KAKAO_OPENCHAT: "https://open.kakao.com/o/sQU9Xt3h",
   INSTAGRAM: "https://www.instagram.com/mk032512?igsh=YmF2Nms0Z3hub2ky",
+  YOUTUBE: "https://www.youtube.com/@Dream-On-tv",
   LITTLY: "https://litt.ly/usana.family",
   WEBSITE: "https://uwell.usana.com",
   CATCHPHRASE: "건강과 재정적 자유를 디자인하다",
