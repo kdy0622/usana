@@ -27,7 +27,8 @@ const ProductPage: React.FC = () => {
         { text: "캐나다 의사 처방전(CPS), 미국 의사용 탁상편(PDR) 유사나제품 등재", link: "https://issuu.com/usanakorea/docs/business_guidebook_vol2_2020/18" }
       ],
       link: "https://uwell.usana.com/ux/cart/kr-KR/category/123",
-      catalogLink: "https://issuu.com/usanakorea/docs/2025_ver.3"
+      catalogLink: "https://issuu.com/usanakorea/docs/2025_ver.3",
+      memberBenefit: "(회원 혜택 : 첫구매 10% 쿠폰, 두번째 주문부터 10%DC)"
     },
     skincare: {
       tabName: "스킨케어",
@@ -44,7 +45,8 @@ const ProductPage: React.FC = () => {
         { text: "트리플 액션 아이크림✨탄력 & pH 테스트 체험🔍", link: "https://youtu.be/aDwQ2FTQzWU" }
       ],
       link: "https://uwell.usana.com/ux/cart/category/121",
-      catalogLink: "https://issuu.com/usanakorea/docs/2025_27fcde3a78e679"
+      catalogLink: "https://issuu.com/usanakorea/docs/2025_27fcde3a78e679",
+      memberBenefit: "(회원 혜택 : 첫구매 10% 쿠폰, 두번째 주문부터 10%DC)"
     },
     foodEnergy: {
       tabName: "푸드&에너지",
@@ -62,7 +64,8 @@ const ProductPage: React.FC = () => {
         { text: "건강한 수분섭취(허브티믹스&미네랄드링크)", link: "https://youtu.be/1w8-9PzUCxs" }
       ],
       link: "https://uwell.usana.com/ux/cart/kr-KR/category/221",
-      catalogLink: "https://issuu.com/usanakorea/docs/2025_ver.3"
+      catalogLink: "https://issuu.com/usanakorea/docs/2025_ver.3",
+      memberBenefit: "(회원 혜택 : 첫구매 10% 쿠폰, 두번째 주문부터 10%DC)"
     },
     all: {
       tabName: "전체제품",
@@ -76,7 +79,8 @@ const ProductPage: React.FC = () => {
         { text: "본사 직배송 정품 보장" }
       ],
       link: "https://uwell.usana.com/ux/dotcom/kor-KR/home",
-      catalogLink: "https://issuu.com/usanakorea/docs/2025_ver.3"
+      catalogLink: "https://issuu.com/usanakorea/docs/2025_ver.3",
+      memberBenefit: ""
     }
   };
 
@@ -202,6 +206,13 @@ const ProductPage: React.FC = () => {
                       </a>
                     )}
                   </div>
+                  
+                  {products[activeTab].memberBenefit && (
+                    <p className="text-sm text-secondary font-medium mt-3">
+                      {products[activeTab].memberBenefit}
+                    </p>
+                  )}
+
                 </motion.div>
               </div>
             </div>
